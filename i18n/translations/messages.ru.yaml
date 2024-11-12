@@ -1,0 +1,13 @@
+bot:
+  name: Норм бот!
+  description: >-
+    👋 Привет!
+
+    Я готов!
+  short_description: >-
+    описание бота в BIO
+  commands:
+    greet: Приветствие
+
+start:
+  intro: Привет, <bold>{username}</bold>!

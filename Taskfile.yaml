@@ -1,0 +1,9 @@
+version: "3"
+
+tasks:
+  build:
+    cmds:
+      - docker build --platform=linux/amd64 --target release -t registry.gitlab.com/??? .
+  push:
+    cmds:
+      - docker push registry.gitlab.com/???:latest

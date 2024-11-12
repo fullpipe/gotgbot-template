@@ -1,0 +1,13 @@
+bot:
+  name: Good bot!
+  description: >-
+    👋 Hello!
+
+    I'm ready!
+  short_description: >-
+    good bot short description in BIO
+  commands:
+    greet: Greet
+
+start:
+  intro: Hello, <b>{username}</b>!

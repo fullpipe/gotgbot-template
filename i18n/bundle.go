@@ -22,7 +22,7 @@ func NewMessageBundle() (mf.Bundle, error) {
 	)
 }
 
-func LocalizeInfoMF(b *gotgbot.Bot, bundle mf.Bundle) {
+func LocalizeBot(b *gotgbot.Bot, bundle mf.Bundle) {
 	en := bundle.Translator("en")
 	ru := bundle.Translator("ru")
 

@@ -38,7 +38,8 @@ func InitBot(lc fx.Lifecycle, cfg config.Config, mfBundle mf.Bundle) (*gotgbot.B
 	return b, dispatcher, nil
 }
 
-func InitBotUpdater(lc fx.Lifecycle,
+func InitBotUpdater(
+	lc fx.Lifecycle,
 	bot *gotgbot.Bot,
 	dispatcher *ext.Dispatcher,
 	controllers []Controller,

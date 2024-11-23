@@ -18,7 +18,14 @@ type Config struct {
 	DSN   string `required:"true"`
 	Token string `required:"true"`
 
+	GraphServer Server `split_words:"true"`
+
 	Debug bool
+}
+
+type Server struct {
+	Host string ``
+	Port string `default:"8080"`
 }
 
 type JWT struct {

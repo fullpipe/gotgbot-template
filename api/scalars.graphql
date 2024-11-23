@@ -1,0 +1,7 @@
+scalar Uint
+scalar Int64
+scalar Time
+scalar JSON
+scalar Upload
+scalar Any
+scalar UUID

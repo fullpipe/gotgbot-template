@@ -29,7 +29,7 @@ func InitBot(lc fx.Lifecycle, cfg config.Config, mfBundle mf.Bundle) (*gotgbot.B
 	})
 
 	lc.Append(fx.StartHook(func(ctx context.Context) {
-		i18n.LocalizeInfoMF(b, mfBundle)
+		i18n.LocalizeBot(b, mfBundle)
 	}))
 
 	lc.Append(fx.StopHook(func(ctx context.Context) {
@@ -67,8 +67,6 @@ func InitBotUpdater(
 				return err
 			}
 		}
-
-		go updater.Idle()
 
 		return nil
 	}))

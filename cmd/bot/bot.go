@@ -1,19 +1,13 @@
 package bot
 
 import (
-	"bm/config"
 	"bm/controller"
-	"bm/db"
 	"bm/di"
-	"bm/i18n"
-	"bm/repository"
-	"log/slog"
 
 	"github.com/PaulSonOfLars/gotgbot/v2/ext"
 
 	"github.com/urfave/cli/v2"
 	"go.uber.org/fx"
-	"go.uber.org/fx/fxevent"
 )
 
 func NewCommand() *cli.Command {
@@ -25,10 +19,9 @@ func NewCommand() *cli.Command {
 
 func botAction(cCtx *cli.Context) error {
 	fx.New(
-		fx.WithLogger(func() fxevent.Logger {
-			return &fxevent.SlogLogger{Logger: slog.Default()}
-		}),
-		fx.Provide(config.GetConfig),
+		di.BaseModule(),
+		// di.PrometheusMetricsServer(),
+		di.Repositories(),
 
 		fx.Provide(
 			di.InitBot,
@@ -37,10 +30,6 @@ func botAction(cCtx *cli.Context) error {
 				fx.ParamTags("", "", "", `group:"controllers"`),
 			),
 		),
-
-		fx.Provide(i18n.NewMessageBundle),
-		fx.Provide(db.NewDB),
-		fx.Provide(repository.NewUserRepo),
 
 		fx.Provide(di.AsController(controller.NewStartController)),
 

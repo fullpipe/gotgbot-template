@@ -1,0 +1,7 @@
+input Do {
+  n: Int! @validate(constraint: "gt=42")
+}
+
+extend type Mutation {
+  dosomething(in: Do!): Boolean
+}

@@ -2,6 +2,7 @@ package main
 
 import (
 	"bm/cmd/bot"
+	"bm/cmd/graph"
 	"bm/cmd/migrate"
 	"log"
 	"os"
@@ -16,6 +17,7 @@ func main() {
 		Usage: "good bot",
 		Commands: []*cli.Command{
 			bot.NewCommand(),
+			graph.NewCommand(),
 			migrate.NewCommand(),
 		},
 	}

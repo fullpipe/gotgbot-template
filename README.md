@@ -11,6 +11,17 @@ go run . bot
 gowatch -args bot
 ```
 
+## GraphQL
+
+```sh
+task gen
+go run . graph
+```
+
+## Metrics
+
+Prometheus metrics exposed on port `:9090/metrics`
+
 ## Dependency Injection
 
 For DI we use [fx](https://github.com/uber-go/fx).

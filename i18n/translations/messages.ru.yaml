@@ -10,4 +10,4 @@ bot:
     greet: Приветствие
 
 start:
-  intro: Привет, <bold>{username}</bold>!
+  intro: Привет, <b>{username}</b>!

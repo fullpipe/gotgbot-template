@@ -1,9 +1,12 @@
-version: "3"
+version: '3'
 
 tasks:
   gen:
     cmds:
       - go run github.com/99designs/gqlgen generate --config gqlgen.yml
+  mockery:
+    cmds:
+      - docker run -v "$PWD":/src -w /src vektra/mockery --all
   build:
     cmds:
       - docker build --platform=linux/amd64 --target release -t registry.gitlab.com/??? .

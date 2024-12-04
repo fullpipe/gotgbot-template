@@ -1,0 +1,24 @@
+with-expecter: true
+outpkg: 'mock_{{.PackageName}}'
+packages:
+  bm/repository:
+    config:
+      all: True
+  bm/tools:
+    config:
+      all: True
+  bm/di:
+    config:
+      all: True
+  bm/db:
+    config:
+      all: True
+  bm/controller:
+    config:
+      all: True
+  bm/config:
+    config:
+      all: True
+  bm/api/*:
+    config:
+      all: True

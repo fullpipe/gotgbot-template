@@ -11,6 +11,14 @@ go run . bot
 gowatch -args bot
 ```
 
+## Testing
+
+Generate mocks with mockery
+
+```sh
+task mockery
+```
+
 ## GraphQL
 
 ```sh
@@ -34,4 +42,3 @@ and to register new controller
 ```
 
 where `NewStartController` function to initialize controller
-

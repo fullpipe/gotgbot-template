@@ -20,15 +20,12 @@ func NewCommand() *cli.Command {
 func botAction(cCtx *cli.Context) error {
 	fx.New(
 		di.BaseModule(),
-		// di.PrometheusMetricsServer(),
+		di.PrometheusMetricsServer(),
 		di.Repositories(),
 
 		fx.Provide(
 			di.InitBot,
-			fx.Annotate(
-				di.InitBotUpdater,
-				fx.ParamTags("", "", "", `group:"controllers"`),
-			),
+			di.InitBotUpdater,
 		),
 
 		fx.Provide(di.AsController(controller.NewStartController)),

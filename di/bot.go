@@ -42,7 +42,7 @@ func InitBotUpdater(
 	lc fx.Lifecycle,
 	bot *gotgbot.Bot,
 	dispatcher *ext.Dispatcher,
-	controllers []Controller,
+	controllers ...Controller,
 ) (*ext.Updater, error) {
 	updater := ext.NewUpdater(dispatcher, nil)
 

@@ -1,5 +1,5 @@
 with-expecter: true
-outpkg: 'mock_{{.PackageName}}'
+outpkg: "mock_{{.PackageName}}"
 packages:
   bm/repository:
     config:

@@ -25,7 +25,10 @@ func botAction(cCtx *cli.Context) error {
 
 		fx.Provide(
 			di.InitBot,
-			di.InitBotUpdater,
+			fx.Annotate(
+				di.InitBotUpdater,
+				fx.ParamTags("", "", "", `group:"controllers"`),
+			),
 		),
 
 		fx.Provide(di.AsController(controller.NewStartController)),

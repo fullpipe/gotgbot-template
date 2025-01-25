@@ -7,6 +7,10 @@ import (
 	"gorm.io/gorm"
 )
 
+type Greeter interface {
+	Greet() string
+}
+
 type User struct {
 	ID int64 `gorm:"primarykey"`
 

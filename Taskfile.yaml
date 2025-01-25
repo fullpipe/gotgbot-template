@@ -1,15 +1,22 @@
-version: '3'
+version: "3"
 
 tasks:
   gen:
-    cmds:
-      - go run github.com/99designs/gqlgen generate --config gqlgen.yml
+    - go run github.com/99designs/gqlgen generate --config gqlgen.yml
   mockery:
-    cmds:
-      - docker run -v "$PWD":/src -w /src vektra/mockery --all
+    - docker run -v "$PWD":/src -w /src vektra/mockery --all
   build:
-    cmds:
-      - docker build --platform=linux/amd64 --target release -t registry.gitlab.com/??? .
+    - docker build --platform=linux/amd64 --target release -t registry.gitlab.com/??? .
   push:
-    cmds:
-      - docker push registry.gitlab.com/???:latest
+    - docker push registry.gitlab.com/???:latest
+  up:
+    - docker stop $(docker ps -a -q) > /dev/null
+    - docker compose up -d
+  migrate:
+    - go run . migrate
+  watch:
+    - gowatch -args bot
+  dev:
+    - task: up
+    - task: migrate
+    - task: watch

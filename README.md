@@ -3,12 +3,7 @@
 ## start
 
 ```sh
-docker-compose up -d
-go run . migrate
-go run . bot
-
-# or
-gowatch -args bot
+task dev
 ```
 
 ## Testing

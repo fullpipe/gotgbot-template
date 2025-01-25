@@ -15,5 +15,13 @@ func AsController(f any) any {
 }
 
 type Controller interface {
+	// Register registeres controller handlers
 	Register(bot *gotgbot.Bot, dispatcher *ext.Dispatcher) error
+}
+
+type ControllerWithPriority interface {
+	Controller
+
+	// Priority returns controller priority, default 0
+	Priority() int
 }

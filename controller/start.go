@@ -37,9 +37,8 @@ func (c *StartController) Start(b *gotgbot.Bot, ctx *ext.Context) error {
 		ctx.EffectiveSender.ChatId,
 		c.Trans(ctx, "start.intro", mf.Arg("username", user.Username)),
 		&gotgbot.SendMessageOpts{
-			ParseMode: gotgbot.ParseModeHTML,
-			ReplyMarkup: gotgbot.InlineKeyboardMarkup{
-			},
+			ParseMode:   gotgbot.ParseModeHTML,
+			ReplyMarkup: gotgbot.InlineKeyboardMarkup{},
 		},
 	)
 

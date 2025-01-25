@@ -35,6 +35,7 @@ func botAction(cCtx *cli.Context) error {
 			controller.NewBaseController,
 			di.AsController(controller.NewStartController),
 			di.AsController(controller.NewPaymentController),
+			di.AsController(controller.NewMessageController),
 		),
 
 		fx.Invoke(func(*ext.Updater) {}),

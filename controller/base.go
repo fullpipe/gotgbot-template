@@ -8,13 +8,23 @@ import (
 	"github.com/fullpipe/icu-mf/mf"
 )
 
-// baseController provides basic shortcuts
-type baseController struct {
+// BaseController provides basic shortcuts
+type BaseController struct {
 	mfBundle mf.Bundle
 	userRepo *repository.UserRepo
 }
 
-func (c *baseController) User(ctx *ext.Context) *entity.User {
+func NewBaseController(
+	userRepo *repository.UserRepo,
+	mfBundle mf.Bundle,
+) BaseController {
+	return BaseController{
+		mfBundle: mfBundle,
+		userRepo: userRepo,
+	}
+}
+
+func (c *BaseController) User(ctx *ext.Context) *entity.User {
 	user := c.userRepo.FindByID(ctx.EffectiveUser.Id)
 	if user == nil {
 		user = c.userRepo.CreateUser(ctx.EffectiveUser)
@@ -23,6 +33,6 @@ func (c *baseController) User(ctx *ext.Context) *entity.User {
 	return user
 }
 
-func (c *baseController) Trans(ctx *ext.Context, id string, args ...mf.TranslationArg) string {
+func (c *BaseController) Trans(ctx *ext.Context, id string, args ...mf.TranslationArg) string {
 	return c.mfBundle.Translator(ctx.EffectiveUser.LanguageCode).Trans(id, args...)
 }

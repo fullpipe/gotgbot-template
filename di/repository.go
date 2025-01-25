@@ -11,6 +11,7 @@ func Repositories() fx.Option {
 		"Repositories",
 		fx.Provide(
 			repository.NewUserRepo,
+			repository.NewPaymentRepo,
 		),
 	)
 }

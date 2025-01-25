@@ -31,7 +31,11 @@ func botAction(cCtx *cli.Context) error {
 			),
 		),
 
-		fx.Provide(di.AsController(controller.NewStartController)),
+		fx.Provide(
+			controller.NewBaseController,
+			di.AsController(controller.NewStartController),
+			di.AsController(controller.NewPaymentController),
+		),
 
 		fx.Invoke(func(*ext.Updater) {}),
 	).Run()

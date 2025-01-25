@@ -11,22 +11,18 @@ import (
 )
 
 type StartController struct {
-	baseController
+	BaseController
 
 	userRepo *repository.UserRepo
 }
 
 func NewStartController(
 	userRepo *repository.UserRepo,
-	mfBundle mf.Bundle,
+	bc BaseController,
 ) *StartController {
 	return &StartController{
-		userRepo: userRepo,
-
-		baseController: baseController{
-			mfBundle: mfBundle,
-			userRepo: userRepo,
-		},
+		BaseController: bc,
+		userRepo:       userRepo,
 	}
 }
 

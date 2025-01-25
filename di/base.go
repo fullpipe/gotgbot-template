@@ -18,6 +18,10 @@ func BaseModule() fx.Option {
 		}),
 		fx.Provide(config.GetConfig),
 		fx.Provide(db.NewDB),
+		fx.Provide(fx.Annotate(
+			db.NewEm,
+			fx.As(new(db.Saver)),
+		)),
 		fx.Provide(i18n.NewMessageBundle),
 	)
 }

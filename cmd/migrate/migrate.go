@@ -29,5 +29,6 @@ func migrateAction(cCtx *cli.Context) error {
 
 	return errors.Join(
 		db.AutoMigrate(&entity.User{}),
+		db.AutoMigrate(&entity.Payment{}),
 	)
 }

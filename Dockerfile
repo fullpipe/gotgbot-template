@@ -9,6 +9,7 @@ WORKDIR /app
 FROM builder as build
 
 ENV CGO_ENABLED=0
+ENV GOOS=linux
 
 COPY go.mod go.sum ./
 RUN go mod download
@@ -17,7 +18,7 @@ COPY . .
 
 RUN go build -a -installsuffix cgo -ldflags="-w -s" -o /go/bin/app
 
-# RELEASE
+# release
 FROM scratch as release
 
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/

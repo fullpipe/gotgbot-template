@@ -40,6 +40,10 @@ New repositories can be registered in [di/repository.go](di/repository.go)
 fx.Provide(repository.NewUserRepo)
 ```
 
+#### Controllers
+
+As you can see in [controller/start.go](controller/start.go). Controller is a struct which implements `di.Controller` interface.
+
 Controllers are registered in [cmd/bot/bot.go](cmd/bot/bot.go) with `di.AsController` wrapper
 
 ```go

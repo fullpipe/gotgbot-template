@@ -34,13 +34,13 @@ This project uses the gotgbot library for interacting with the Telegram Bot API.
 
 The project utilizes the `fx` framework for dependency injection, promoting modularity and testability.
 
-New repositories can be registered in `di/repository.go`
+New repositories can be registered in [di/repository.go](di/repository.go)
 
 ```go
 fx.Provide(repository.NewUserRepo)
 ```
 
-Controllers are registered in `cmd/bot/bot.go` with `di.AsController` wrapper
+Controllers are registered in [cmd/bot/bot.go](cmd/bot/bot.go) with `di.AsController` wrapper
 
 ```go
 di.AsController(controller.NewMessageController),
@@ -48,7 +48,7 @@ di.AsController(controller.NewMessageController),
 
 ### task
 
-Simplifies common development tasks like running the application, generating mocks, and generating GraphQL code. See the [Taskfile.yml](Taskfile.yml) for available commands.
+Simplifies common development tasks like running the application, generating mocks, and generating GraphQL code. See the [Taskfile.yaml](Taskfile.yaml) for available commands.
 
 ### mockery
 

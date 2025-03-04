@@ -18,7 +18,7 @@ linters:
     - unused
 issues:
   exclude-rules:
-    - path: "*_gen.go"
+    - path: _gen.go
       linters:
         - govet
         - tagalign

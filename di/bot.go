@@ -3,6 +3,7 @@ package di
 import (
 	"bm/config"
 	"bm/i18n"
+	"bm/tools"
 	"cmp"
 	"context"
 	"log/slog"
@@ -30,11 +31,69 @@ func InitBot(lc fx.Lifecycle, cfg config.Config, mfBundle mf.Bundle) (*gotgbot.B
 		MaxRoutines: ext.DefaultMaxRoutines,
 	})
 
-	lc.Append(fx.StartHook(func(ctx context.Context) {
+	en := mfBundle.Translator("en")
+	ru := mfBundle.Translator("ru")
+	ctx, cancel := context.WithCancel(context.Background())
+
+	lc.Append(fx.StartHook(func() {
 		i18n.LocalizeBot(b, mfBundle)
+		tools.Retry(ctx, func(ctx context.Context) (any, error) {
+			return b.SetMyCommandsWithContext(ctx, []gotgbot.BotCommand{
+				{Command: "support", Description: en.Trans("bot.commands.support")},
+			}, nil)
+		})
+
+		tools.Retry(ctx, func(ctx context.Context) (any, error) {
+			return b.SetMyCommandsWithContext(ctx, []gotgbot.BotCommand{
+				{Command: "support", Description: ru.Trans("bot.commands.support")},
+			}, &gotgbot.SetMyCommandsOpts{
+				Scope:        gotgbot.BotCommandScopeDefault{},
+				LanguageCode: "ru",
+			})
+		})
+
+		tools.Retry(ctx, func(ctx context.Context) (any, error) {
+			return b.SetMyNameWithContext(ctx, &gotgbot.SetMyNameOpts{
+				Name: en.Trans("bot.name"),
+			})
+		})
+
+		tools.Retry(ctx, func(ctx context.Context) (any, error) {
+			return b.SetMyNameWithContext(ctx, &gotgbot.SetMyNameOpts{
+				Name:         ru.Trans("bot.name"),
+				LanguageCode: "ru",
+			})
+		})
+
+		tools.Retry(ctx, func(ctx context.Context) (any, error) {
+			return b.SetMyDescriptionWithContext(ctx, &gotgbot.SetMyDescriptionOpts{
+				Description: en.Trans("bot.description"),
+			})
+		})
+
+		tools.Retry(ctx, func(ctx context.Context) (any, error) {
+			return b.SetMyDescriptionWithContext(ctx, &gotgbot.SetMyDescriptionOpts{
+				Description:  ru.Trans("bot.description"),
+				LanguageCode: "ru",
+			})
+		})
+
+		tools.Retry(ctx, func(ctx context.Context) (any, error) {
+			return b.SetMyShortDescriptionWithContext(ctx, &gotgbot.SetMyShortDescriptionOpts{
+				ShortDescription: en.Trans("bot.short_description"),
+			})
+		})
+
+		tools.Retry(ctx, func(ctx context.Context) (any, error) {
+			return b.SetMyShortDescriptionWithContext(ctx, &gotgbot.SetMyShortDescriptionOpts{
+				ShortDescription: ru.Trans("bot.short_description"),
+				LanguageCode:     "ru",
+			})
+		})
 	}))
 
-	lc.Append(fx.StopHook(func(ctx context.Context) {
+	lc.Append(fx.StopHook(func() {
+		cancel()
 	}))
 
 	return b, dispatcher, nil
